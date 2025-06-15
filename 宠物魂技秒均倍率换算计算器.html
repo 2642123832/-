@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>三倍元素倍率换算计算器</title>
+  <style>
+    body { font-family: sans-serif; max-width:400px; margin:30px auto; padding:10px; }
+    input { width:100%; padding:8px; margin:5px 0; }
+    button { padding:10px 15px; margin-top:10px; }
+    .result { margin-top:15px; font-size:1.2em; color: blue; }
+  </style>
+</head>
+<body>
+  <h2>三倍元素倍率换算计算器</h2>
+  <label>大荒攻击：<input id="dahuang" type="number" value="4"></label>
+  <label>元素攻击：<input id="yuansu" type="number" value="1"></label>
+  <label>三倍元素倍率：<input id="multiplier" type="number" value="1.0" step="0.1"></label>
+  <button onclick="calculate()">计算等效倍率</button>
+  <div class="result" id="result"></div>
+
+  <script>
+    function calculate() {
+      const a = parseFloat(document.getElementById('dahuang').value);
+      const b = parseFloat(document.getElementById('yuansu').value);
+      const m3 = parseFloat(document.getElementById('multiplier').value);
+      const base = a + b;
+      if (isNaN(a) || isNaN(b) || isNaN(m3) || base === 0) {
+        document.getElementById('result').innerText = '输入有误或 base = 0，请检查。';
+        return;
+      }
+      const factor = (a + 3 * b) / base;
+      const me = (factor * m3).toFixed(4);
+      document.getElementById('result').innerText =
+        `✅ 等效单倍倍率：${me} （倍率 × ${factor.toFixed(4)}）`;
+    }
+  </script>
+</body>
+</html>
